@@ -40,7 +40,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-background to-secondary">
-      {/* Floating Geometric Shapes - Hidden on mobile */}
+      {/* Floating Geometric Shapes */}
       <motion.div 
         animate={{
           y: [0, -20, 0],
@@ -51,7 +51,7 @@ const Hero = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }} 
-        className="absolute top-20 left-10 w-20 h-20 border-2 border-primary/30 rounded-lg hidden md:block" 
+        className="absolute top-20 left-10 w-20 h-20 border-2 border-primary/30 rounded-lg" 
       />
       <motion.div 
         animate={{
@@ -63,7 +63,7 @@ const Hero = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }} 
-        className="absolute bottom-32 right-20 w-32 h-32 rounded-full border-2 border-primary/20 hidden md:block" 
+        className="absolute bottom-32 right-20 w-32 h-32 rounded-full border-2 border-primary/20" 
       />
       <motion.div 
         animate={{
@@ -74,7 +74,7 @@ const Hero = () => {
           repeat: Infinity,
           ease: "linear"
         }} 
-        className="absolute top-1/3 right-1/4 w-16 h-16 hidden md:block"
+        className="absolute top-1/3 right-1/4 w-16 h-16"
       >
         <div 
           className="w-full h-full border-2 border-primary/30" 
@@ -88,7 +88,7 @@ const Hero = () => {
         variants={containerVariants} 
         initial="hidden" 
         animate="visible" 
-        className="container mx-auto px-4 sm:px-6 text-center z-10 max-w-7xl"
+        className="container mx-auto px-6 text-center z-10"
       >
         <motion.div variants={itemVariants} className="mb-8">
           <SplitText

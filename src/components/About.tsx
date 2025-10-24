@@ -33,8 +33,8 @@ const About = () => {
   const paragraphText2 = "With a strong foundation in both frontend and backend development, I love creating seamless digital experiences that solve real-world problems.";
 
   return (
-    <section id="about" ref={ref} className="py-32 bg-background overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+    <section id="about" ref={ref} className="py-32 bg-background">
+      <div className="container mx-auto px-6">
         {/* Centered Title */}
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
@@ -84,12 +84,12 @@ const About = () => {
         </div>
 
         {/* Tech Stack Infinite Slider */}
-        <div className="mt-20 -mx-4 sm:mx-0">
-          <h3 className="text-2xl md:text-3xl font-poppins font-bold text-center mb-12 text-foreground px-4 sm:px-0">
+        <div className="mt-20">
+          <h3 className="text-2xl md:text-3xl font-poppins font-bold text-center mb-12 text-foreground">
             Tech Stack
           </h3>
 
-          <div className="overflow-hidden relative w-full">
+          <div className="overflow-hidden relative">
             <motion.div
               className="flex gap-8"
               animate={{
