@@ -33,7 +33,7 @@ const About = () => {
   const paragraphText2 = "With a strong foundation in both frontend and backend development, I love creating seamless digital experiences that solve real-world problems.";
 
   return (
-    <section id="about" ref={ref} className="py-32 bg-background">
+    <section id="about" ref={ref} className="py-32 bg-background overflow-x-hidden">
       <div className="container mx-auto px-6">
         {/* Centered Title */}
         <motion.h2

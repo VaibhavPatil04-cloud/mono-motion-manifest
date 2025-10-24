@@ -51,7 +51,7 @@ const Hero = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }} 
-        className="absolute top-20 left-10 w-20 h-20 border-2 border-primary/30 rounded-lg" 
+        className="absolute top-20 left-10 w-20 h-20 border-2 border-primary/30 rounded-lg hidden md:block" 
       />
       <motion.div 
         animate={{
@@ -63,7 +63,7 @@ const Hero = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }} 
-        className="absolute bottom-32 right-20 w-32 h-32 rounded-full border-2 border-primary/20" 
+        className="absolute bottom-32 right-20 w-32 h-32 rounded-full border-2 border-primary/20 hidden md:block" 
       />
       <motion.div 
         animate={{
@@ -74,7 +74,7 @@ const Hero = () => {
           repeat: Infinity,
           ease: "linear"
         }} 
-        className="absolute top-1/3 right-1/4 w-16 h-16"
+        className="absolute top-1/3 right-1/4 w-16 h-16 hidden md:block"
       >
         <div 
           className="w-full h-full border-2 border-primary/30" 
