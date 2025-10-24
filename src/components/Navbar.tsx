@@ -59,19 +59,19 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border overflow-hidden"
+      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 max-w-full">
+        <div className="flex justify-between items-center h-16">
           {/* Logo - White text */}
           <motion.button
             onClick={() => scrollToSection("home")}
-            className="text-xl md:text-2xl font-bold flex items-center gap-2 cursor-pointer flex-shrink-0"
+            className="text-2xl font-bold flex items-center gap-2 cursor-pointer flex-shrink-0"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <FaCode className="text-primary text-xl md:text-2xl" />
-            <span className="text-white whitespace-nowrap">
+            <FaCode className="text-primary" />
+            <span className="text-white">
               It's VE
             </span>
           </motion.button>
