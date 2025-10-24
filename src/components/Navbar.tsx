@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes,FaCode } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,10 +54,11 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-2xl font-poppins font-bold text-gradient cursor-pointer"
+            className="flex items-center gap-2 text-2xl font-poppins font-bold text-gradient cursor-pointer"
             onClick={() => scrollToSection("home")}
           >
-            It's VE
+            <FaCode className="text-primary" />
+            <span>It's VE</span>
           </motion.div>
 
           {/* Desktop Navigation */}

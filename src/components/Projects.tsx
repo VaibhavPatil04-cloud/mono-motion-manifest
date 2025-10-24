@@ -15,29 +15,29 @@ const Projects = () => {
     description: "College placement management portal with real-time updates and student tracking",
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop",
     tags: ["React", "Firebase", "Full-Stack"],
-    liveUrl: "#",
-    githubUrl: "#"
+    liveUrl: "https://metkickstart.onrender.com/",
+    githubUrl: "https://github.com/Met-Kickstart/MetKickStartProject"
   }, {
     title: "Waste-Wise",
     description: "AI-powered recycling app using Google Vision API for waste classification",
-    image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&h=600&fit=crop",
+    image: "wastewise.jpg",
     tags: ["React", "AI/ML", "Google Vision API"],
-    liveUrl: "#",
-    githubUrl: "#"
+    liveUrl: "https://wastewise-2-plp6.onrender.com",
+    githubUrl: "https://github.com/VaibhavPatil04-cloud/wastewise"
   }, {
     title: "SimpleExplainer",
     description: "Gemini AI-powered concept explainer that breaks down complex topics",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
+    image: "simpleexplainer.png",
     tags: ["React", "AI/ML", "Gemini AI"],
-    liveUrl: "#",
-    githubUrl: "#"
+    liveUrl: "https://simpleexaplainer.onrender.com",
+    githubUrl: "https://github.com/VaibhavPatil04-cloud/simpleexaplainer"
   }, {
     title: "Patil Jewellers",
     description: "Full-featured e-commerce website with cart, checkout, and admin panel",
-    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=600&fit=crop",
+    image: "patiljewellers.png",
     tags: ["React", "E-commerce", "Full-Stack"],
-    liveUrl: "#",
-    githubUrl: "#"
+    liveUrl: "https://ecommerce-jewelry-shop-1.onrender.com",
+    githubUrl: "https://github.com/VaibhavPatil04-cloud/ecommerce-jewelry-shop"
   }];
   const filteredProjects = activeFilter === "All" ? projects : projects.filter(project => project.tags.includes(activeFilter));
   return <section id="projects" ref={ref} className="py-32 bg-secondary">
@@ -62,7 +62,7 @@ const Projects = () => {
         duration: 0.6,
         delay: 0.2
       }} className="flex flex-wrap justify-center gap-4 mb-16">
-          {filters.map(filter => {})}
+          {filters.map(() => {})}
         </motion.div>
 
         <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
