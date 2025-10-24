@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes,FaCode } from "react-icons/fa";
+import { FaBars, FaTimes, FaCode } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,19 +17,25 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map(item => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 150;
 
-      sections.forEach((section, index) => {
+      let currentSection = "home";
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
         if (section) {
           const top = section.offsetTop;
-          const height = section.offsetHeight;
-          if (scrollPosition >= top && scrollPosition < top + height) {
-            setActiveSection(navItems[index].id);
+          if (scrollPosition >= top - 200) {
+            currentSection = navItems[i].id;
+            break;
           }
         }
-      });
+      }
+      
+      setActiveSection(currentSection);
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -37,7 +43,14 @@ const Navbar = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
       setIsOpen(false);
     }
   };
@@ -46,37 +59,39 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10"
+      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
     >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="flex items-center gap-2 text-2xl font-poppins font-bold text-gradient cursor-pointer"
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo - White text */}
+          <motion.button
             onClick={() => scrollToSection("home")}
+            className="text-2xl font-bold flex items-center gap-2 cursor-pointer flex-shrink-0"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             <FaCode className="text-primary" />
-            <span>It's VE</span>
-          </motion.div>
+            <span className="text-white">
+              It's VE
+            </span>
+          </motion.button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item, index) => (
               <motion.button
-                key={item.id}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
+                key={index}
                 onClick={() => scrollToSection(item.id)}
-                className="relative text-foreground hover:text-primary transition-colors font-inter"
+                className="relative text-foreground hover:text-primary transition-colors font-inter cursor-pointer whitespace-nowrap"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
               >
                 {item.name}
                 {activeSection === item.id && (
                   <motion.div
                     layoutId="activeSection"
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                    initial={false}
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -84,48 +99,53 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-foreground text-2xl"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <FaTimes /> : <FaBars />}
-          </button>
+          {/* Mobile Menu Button - Properly contained */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-foreground hover:text-primary transition-colors p-2"
+              aria-label="Toggle menu"
+              type="button"
+            >
+              {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <motion.div
-        initial={false}
-        animate={{
-          x: isOpen ? 0 : "100%",
-        }}
-        transition={{ type: "tween", duration: 0.3 }}
-        className="fixed top-0 right-0 bottom-0 w-64 bg-background border-l border-white/10 md:hidden"
-      >
-        <div className="flex flex-col p-8 space-y-6 mt-20">
-          {navItems.map((item) => (
-            <motion.button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={`text-left text-lg font-inter transition-colors ${
-                activeSection === item.id ? "text-primary" : "text-foreground hover:text-primary"
-              }`}
-              whileHover={{ x: 10 }}
-            >
-              {item.name}
-            </motion.button>
-          ))}
-        </div>
-      </motion.div>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+          className="md:hidden bg-background/95 backdrop-blur-md border-b border-border"
+        >
+          <div className="w-full max-w-7xl mx-auto px-4 py-4 space-y-3">
+            {navItems.map((item) => (
+              <motion.button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`block w-full text-left text-lg font-inter transition-colors px-4 py-3 rounded-lg ${
+                  activeSection === item.id 
+                    ? "text-primary bg-primary/10" 
+                    : "text-foreground hover:text-primary hover:bg-primary/5"
+                }`}
+                whileHover={{ x: 10 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {item.name}
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+      )}
 
       {/* Overlay */}
       {isOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/50 md:hidden"
+        <div
+          className="fixed inset-0 bg-black/50 z-[-1] md:hidden"
           onClick={() => setIsOpen(false)}
         />
       )}
