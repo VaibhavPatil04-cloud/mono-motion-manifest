@@ -10,7 +10,7 @@ const Navbar = () => {
     { name: "Home", id: "home" },
     { name: "About", id: "about" },
     { name: "Projects", id: "projects" },
-    { name: "Skills", id: "skills" },
+    { name: "Experience", id: "experience" },
     { name: "Contact", id: "contact" },
   ];
 
@@ -99,16 +99,17 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button - Properly contained */}
+          {/* Mobile Menu Button - Fixed */}
           <div className="md:hidden flex items-center">
-            <button
+            <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground hover:text-primary transition-colors p-2"
+              className="text-white hover:text-primary transition-colors p-2 z-50 relative"
               aria-label="Toggle menu"
               type="button"
+              whileTap={{ scale: 0.95 }}
             >
               {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
