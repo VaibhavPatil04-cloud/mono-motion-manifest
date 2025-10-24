@@ -46,33 +46,33 @@ const Experience = () => {
           Experience & Education
         </motion.h2>
 
-        <div className="max-w-4xl mx-auto relative">
+        <div className="max-w-5xl mx-auto relative">
           {/* Timeline line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border" />
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2" />
 
-          {timeline.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className={`relative mb-12 ${
-                index % 2 === 0 ? "md:pr-1/2 md:text-right" : "md:pl-1/2 md:ml-auto"
-              }`}
-            >
-              <div className="flex items-start gap-6 md:gap-0">
+          {timeline.map((item, index) => {
+            const isLeft = index % 2 === 0;
+            
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className={`relative mb-12 flex ${isLeft ? 'md:justify-start' : 'md:justify-end'}`}
+              >
                 {/* Icon node */}
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : {}}
                   transition={{ duration: 0.4, delay: index * 0.2 + 0.3 }}
-                  className="absolute left-8 md:left-1/2 -ml-4 w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10 border-4 border-background"
+                  className="absolute left-8 md:left-1/2 -ml-4 md:-ml-0 md:-translate-x-1/2 w-8 h-8 bg-primary rounded-full flex items-center justify-center z-10 border-4 border-background"
                 >
                   <item.icon className="text-background text-sm" />
                 </motion.div>
 
                 {/* Content card */}
-                <div className="ml-20 md:ml-0 w-full md:w-[calc(50%-2rem)]">
+                <div className={`ml-20 md:ml-0 w-full md:w-[45%] ${isLeft ? 'md:pr-12' : 'md:pl-12'}`}>
                   <motion.div
                     whileHover={{ scale: 1.02, y: -5 }}
                     className="bg-card border border-border rounded-lg p-6 glow-hover cursor-pointer"
@@ -87,9 +87,9 @@ const Experience = () => {
                     <p className="text-muted-foreground text-sm">{item.description}</p>
                   </motion.div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
