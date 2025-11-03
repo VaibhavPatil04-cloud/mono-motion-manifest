@@ -40,7 +40,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-end justify-center overflow-hidden py-20 md:py-0 bg-gradient-to-b from-background to-background/80">
-      {/* Floating Geometric Shapes - Hidden on mobile */}
+      {/* Floating Geometric Shapes */}
       <motion.div 
         animate={{
           y: [0, -20, 0],
@@ -51,7 +51,7 @@ const Hero = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }} 
-        className="absolute top-20 left-10 w-20 h-20 border-2 border-primary/30 rounded-lg hidden md:block pointer-events-none" 
+        className="absolute top-20 left-10 w-20 h-20 border-2 border-primary/30 rounded-lg pointer-events-none" 
       />
       <motion.div 
         animate={{
@@ -63,7 +63,7 @@ const Hero = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }} 
-        className="absolute bottom-32 right-20 w-32 h-32 rounded-full border-2 border-primary/20 hidden md:block pointer-events-none" 
+        className="absolute bottom-32 right-20 w-32 h-32 rounded-full border-2 border-primary/20 pointer-events-none" 
       />
       <motion.div 
         animate={{
@@ -74,7 +74,7 @@ const Hero = () => {
           repeat: Infinity,
           ease: "linear"
         }} 
-        className="absolute top-1/3 right-1/4 w-16 h-16 hidden md:block pointer-events-none"
+        className="absolute top-1/3 right-1/4 w-16 h-16 pointer-events-none"
       >
         <div 
           className="w-full h-full border-2 border-primary/30" 
