@@ -80,6 +80,14 @@ const About = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              const link = document.createElement('a');
+              link.href = '/ResumeVaibhavMET.pdf';
+              link.download = 'ResumeVaibhavMET.pdf';
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }}
             className="px-6 py-3 bg-primary text-foreground rounded-lg font-inter font-semibold glow-hover"
           >
             Download Resume
