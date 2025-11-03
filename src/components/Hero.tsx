@@ -51,7 +51,7 @@ const Hero = () => {
         }}
       >
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-black/70 " />
       </div>
       {/* Floating Geometric Shapes - Hidden on mobile */}
       <motion.div 
