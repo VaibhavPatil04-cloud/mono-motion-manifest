@@ -100,21 +100,19 @@ const Projects = () => {
   ];
 
   const currentProject = projects[currentProjectIndex];
-
-  return (
+    return (
     <section 
       id="projects"
       ref={ref} 
-      className="min-h-screen bg-black text-white py-12 md:py-20 px-4 md:px-6 relative"
-      style={{ overflow: 'visible' }}
+      className="min-h-screen bg-black text-white py-12 md:py-20 px-4 md:px-6 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
-        {/* Section Header - Centered above everything on all screen sizes */}
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent mb-8 md:mb-12 lg:mb-16 text-center">
+        {/* Section Header */}
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 md:mb-12 lg:mb-16 text-center px-4 py-2">
           Featured Projects
         </h2>
 
-        {/* Mobile: Stack vertically, Desktop: Side by side */}
+        {/* Mobile: Stack vertically, Desktop: Side by side - Centered vertically */}
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
           {/* Left side - Dynamic content based on current card */}
@@ -175,11 +173,11 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* Right side - Card swap animation with hover buttons */}
+          {/* Right side - Card swap animation - Centered vertically */}
           <div 
             className="relative w-full order-1 lg:order-2 flex items-center justify-center"
             style={{ 
-              minHeight: isMobile ? '500px' : '800px',
+              minHeight: isMobile ? '500px' : '650px',
               overflow: 'visible'
             }}
           >

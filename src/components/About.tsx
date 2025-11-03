@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { FaReact, FaNodeJs, FaPython, FaGithub, FaHtml5, FaCss3, FaAws } from "react-icons/fa";
+import { VscCode } from "react-icons/vsc";
+import { FaReact, FaNodeJs, FaPython, FaGithub, FaHtml5, FaCss3, FaAws,FaGitAlt, } from "react-icons/fa";
 import { SiFirebase, SiTailwindcss, SiVite, SiJavascript, SiCss3 } from "react-icons/si";
 import TextType from "@/components/ui/TextType";
 
@@ -23,7 +24,9 @@ const About = () => {
     { name: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
     { name: "HTML5", icon: FaHtml5, color: "#ba7814ff" },
     { name: "CSS", icon: SiCss3, color: "#411a71ff" },
-    { name: "AWS Cloud", icon: FaAws, color: "#ffffffff" }
+    { name: "AWS Cloud", icon: FaAws, color: "#ffffffff" },
+     { name: "Git", icon: FaGitAlt, color: "#F05032" },
+     { name: "VS Code", icon: VscCode, color: "#007ACC" }
   ];
 
   // Duplicate for infinite scroll effect
