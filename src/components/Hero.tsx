@@ -39,7 +39,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 md:py-0">
+    <section id="home" className="relative min-h-screen flex items-end justify-center overflow-hidden py-20 md:py-0">
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 z-0"
@@ -51,8 +51,9 @@ const Hero = () => {
         }}
       >
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/70 " />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
       </div>
+      
       {/* Floating Geometric Shapes - Hidden on mobile */}
       <motion.div 
         animate={{
@@ -101,9 +102,9 @@ const Hero = () => {
         variants={containerVariants} 
         initial="hidden" 
         animate="visible" 
-        className="container mx-auto px-4 md:px-6 text-center z-10"
+        className="container mx-auto px-4 md:px-6 text-center z-10 pb-16 md:pb-24 w-full"
       >
-        <motion.div variants={itemVariants} className="mb-6 md:mb-8">
+        <motion.div variants={itemVariants} className="mb-4 md:mb-6">
           <SplitText
             text="Hi, I'm Vaibhav"
             tag="h1"
@@ -116,7 +117,7 @@ const Hero = () => {
           />
         </motion.div>
 
-        <motion.div variants={itemVariants} className="mb-8 md:mb-12">
+        <motion.div variants={itemVariants} className="mb-6 md:mb-8">
           <p className="text-lg md:text-2xl font-inter text-muted-foreground px-4">
             Full-Stack Developer | Cloud Engineer | React Specialist
           </p>
@@ -124,7 +125,7 @@ const Hero = () => {
 
         <motion.div 
           variants={itemVariants} 
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 md:mb-12"
         >
           <motion.button 
             onClick={() => scrollToSection("projects")} 
@@ -152,7 +153,7 @@ const Hero = () => {
           </motion.button>
         </motion.div>
 
-        <motion.div variants={itemVariants} className="mt-12 md:mt-20">
+        <motion.div variants={itemVariants}>
           <motion.button 
             onClick={() => scrollToSection("about")} 
             animate={{
