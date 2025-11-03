@@ -10,7 +10,7 @@ const Navbar = () => {
     { name: "Home", id: "home" },
     { name: "About", id: "about" },
     { name: "Projects", id: "projects" },
-    { name: "Skills", id: "skills" },
+    { name: "Experience", id: "experience" },
     { name: "Contact", id: "contact" },
   ];
 
@@ -59,19 +59,19 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+      className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border overflow-hidden"
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-16 max-w-full">
           {/* Logo - White text */}
           <motion.button
             onClick={() => scrollToSection("home")}
-            className="text-2xl font-bold flex items-center gap-2 cursor-pointer flex-shrink-0"
+            className="text-xl md:text-2xl font-bold flex items-center gap-2 cursor-pointer flex-shrink-0"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <FaCode className="text-primary" />
-            <span className="text-white">
+            <FaCode className="text-primary text-xl md:text-2xl" />
+            <span className="text-white whitespace-nowrap">
               It's VE
             </span>
           </motion.button>
@@ -99,16 +99,17 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Mobile Menu Button - Properly contained */}
+          {/* Mobile Menu Button - Fixed */}
           <div className="md:hidden flex items-center">
-            <button
+            <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-foreground hover:text-primary transition-colors p-2"
+              className="text-white hover:text-primary transition-colors p-2 z-50 relative"
               aria-label="Toggle menu"
               type="button"
+              whileTap={{ scale: 0.95 }}
             >
               {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
