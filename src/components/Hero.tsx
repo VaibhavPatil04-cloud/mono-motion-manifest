@@ -39,35 +39,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-end justify-center overflow-hidden py-20 md:py-0">
-      {/* Desktop Image */}
-      <div 
-        className="absolute inset-0 z-0 hidden md:block"
-        style={{
-          backgroundImage: 'url(/hero1.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-      </div>
-      
-      {/* Mobile Image */}
-      <div 
-        className="absolute inset-0 z-0 md:hidden"
-        style={{
-          backgroundImage: 'url(/hero.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-      </div>
-      
+    <section id="home" className="relative min-h-screen flex items-end justify-center overflow-hidden py-20 md:py-0 bg-gradient-to-b from-background to-background/80">
       {/* Floating Geometric Shapes - Hidden on mobile */}
       <motion.div 
         animate={{
