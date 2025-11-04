@@ -1,36 +1,16 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
-import { toast } from "sonner";
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    toast.success("Message sent successfully!");
-    setFormData({ name: "", email: "", message: "" });
-    setIsSubmitting(false);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const socialLinks = [
-    { name: "GitHub", icon: FaGithub, url: "https://github.com", color: "#fff" },
-    { name: "LinkedIn", icon: FaLinkedin, url: "https://linkedin.com", color: "#0A66C2" },
-    { name: "Email", icon: FaEnvelope, url: "mailto:your.email@example.com", color: "#EA4335" },
+    { name: "GitHub", icon: FaGithub, url: "https://github.com/VaibhavPatil04-cloud", color: "#fff" },
+    { name: "LinkedIn", icon: FaLinkedin, url: "https://www.linkedin.com/in/vaibhav-patil-161608234", color: "#0A66C2" },
+    { name: "Email", icon: FaEnvelope, url: "mailto:patilvaibhavp1@gmail.com", color: "#EA4335" },
   ];
 
   return (
@@ -91,15 +71,18 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            onSubmit={handleSubmit}
+            action="https://formsubmit.co/patilvaibhavp1@gmail.com"
+            method="POST"
             className="space-y-6"
           >
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value={window.location.origin} />
+            <input type="hidden" name="_subject" value="New message from portfolio contact form" />
+            
             <div>
               <input
                 type="text"
                 name="name"
-                value={formData.name}
-                onChange={handleChange}
                 placeholder="Your Name"
                 required
                 className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:border-primary outline-none transition-colors font-inter text-foreground"
@@ -109,8 +92,6 @@ const Contact = () => {
               <input
                 type="email"
                 name="email"
-                value={formData.email}
-                onChange={handleChange}
                 placeholder="Your Email"
                 required
                 className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:border-primary outline-none transition-colors font-inter text-foreground"
@@ -119,8 +100,6 @@ const Contact = () => {
             <div>
               <textarea
                 name="message"
-                value={formData.message}
-                onChange={handleChange}
                 placeholder="Your Message"
                 required
                 rows={5}
@@ -129,12 +108,11 @@ const Contact = () => {
             </div>
             <motion.button
               type="submit"
-              disabled={isSubmitting}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full px-6 py-3 bg-primary text-foreground rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed font-inter"
+              className="w-full px-6 py-3 bg-primary text-foreground rounded-lg font-semibold hover:shadow-lg transition-all font-inter"
             >
-              {isSubmitting ? "Sending..." : "Send Message"}
+              Send Message
             </motion.button>
           </motion.form>
         </div>
