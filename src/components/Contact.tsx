@@ -1,11 +1,42 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 const Contact = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      message: formData.get("message") as string,
+    };
+
+    try {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
+        body: data,
+      });
+
+      if (error) throw error;
+
+      toast.success("Message sent successfully!");
+      e.currentTarget.reset();
+    } catch (error: any) {
+      console.error("Error sending message:", error);
+      toast.error("Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const socialLinks = [
     { name: "GitHub", icon: FaGithub, url: "https://github.com/VaibhavPatil04-cloud", color: "#fff" },
@@ -71,13 +102,9 @@ const Contact = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            action="https://formsubmit.co/patilvaibhavp1@gmail.com"
-            method="POST"
+            onSubmit={handleSubmit}
             className="space-y-6"
           >
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value={window.location.origin} />
-            <input type="hidden" name="_subject" value="New message from portfolio contact form" />
             
             <div>
               <input
@@ -108,11 +135,12 @@ const Contact = () => {
             </div>
             <motion.button
               type="submit"
+              disabled={isSubmitting}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full px-6 py-3 bg-primary text-foreground rounded-lg font-semibold hover:shadow-lg transition-all font-inter"
+              className="w-full px-6 py-3 bg-primary text-foreground rounded-lg font-semibold hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed font-inter"
             >
-              Send Message
+              {isSubmitting ? "Sending..." : "Send Message"}
             </motion.button>
           </motion.form>
         </div>
